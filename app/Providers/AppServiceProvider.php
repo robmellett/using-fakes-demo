@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\AnalyticsClient;
 use App\Services\AnalyticsService;
 use App\Services\HttpAnalyticsGateway;
 use Illuminate\Foundation\Application;
@@ -23,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->singleton(AnalyticsService::class, function (Application $app) {
-            return HttpAnalyticsGateway::make();
+            return new HttpAnalyticsGateway(
+                AnalyticsClient::create()
+            );
         });
     }
 }

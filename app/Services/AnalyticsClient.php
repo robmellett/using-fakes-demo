@@ -14,6 +14,6 @@ class AnalyticsClient
         return Http::withHeaders([
             'X-Example' => 'example',
         ])
-            ->baseUrl('https://analytics.google.com');
+            ->baseUrl('https://jsonplaceholder.typicode.com');
     }
 }

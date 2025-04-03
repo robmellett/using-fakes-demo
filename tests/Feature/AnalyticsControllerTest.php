@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Services\HttpAnalyticsGateway;
+use App\Services\Analytics;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -28,7 +28,7 @@ class AnalyticsControllerTest extends TestCase
     #[Test]
     public function can_track_requests_using_fake_implementation(): void
     {
-        HttpAnalyticsGateway::fake();
+        Analytics::fake();
 
         $result = $this->post('api/v1/analytics', [
             'email' => 'test@email.com',

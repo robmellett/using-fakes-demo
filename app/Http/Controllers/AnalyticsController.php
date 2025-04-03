@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\AnalyticsService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Response;
 
 class AnalyticsController extends Controller
 {
@@ -11,11 +13,11 @@ class AnalyticsController extends Controller
         public AnalyticsService $service
     ) {}
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResource
     {
         $result = $this->service->track($request->all());
 
-        return response()->json([
+        return JsonResource::make([
             'data' => $result,
         ]);
     }
